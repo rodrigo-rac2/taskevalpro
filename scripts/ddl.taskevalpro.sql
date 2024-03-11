@@ -24,7 +24,7 @@ CREATE TABLE Tarefas (
 -- Tabela de Avaliações
 CREATE TABLE Avaliacoes (
     ID SERIAL PRIMARY KEY,
-    Critérios_Avaliacao TEXT,
+    Criterios_Avaliacao TEXT,
     Pontuacao INT,
     Comentarios TEXT,
     ID_Tarefa_Avaliada INT,

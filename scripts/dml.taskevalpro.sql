@@ -8,8 +8,8 @@ INSERT INTO Tarefas (Titulo, Descricao, Prazo, Prioridade, Status, ID_Criador, I
 INSERT INTO Tarefas (Titulo, Descricao, Prazo, Prioridade, Status, ID_Criador, ID_Responsavel) VALUES ('Tarefa 2', 'Descrição da Tarefa 2', '2024-03-25', 2, 'Pendente', 2, 2);
 
 -- Populando a tabela de avaliações
-INSERT INTO Avaliacoes (Critérios_Avaliacao, Pontuacao, Comentarios, ID_Tarefa_Avaliada, ID_Avaliador) VALUES ('Critérios 1', 5, 'Bom trabalho!', 1, 2);
-INSERT INTO Avaliacoes (Critérios_Avaliacao, Pontuacao, Comentarios, ID_Tarefa_Avaliada, ID_Avaliador) VALUES ('Critérios 2', 4, 'Pode melhorar.', 2, 3);
+INSERT INTO Avaliacoes (Criterios_Avaliacao, Pontuacao, Comentarios, ID_Tarefa_Avaliada, ID_Avaliador) VALUES ('Critérios 1', 5, 'Bom trabalho!', 1, 2);
+INSERT INTO Avaliacoes (Criterios_Avaliacao, Pontuacao, Comentarios, ID_Tarefa_Avaliada, ID_Avaliador) VALUES ('Critérios 2', 4, 'Pode melhorar.', 2, 3);
 
 -- Populando a tabela de projetos
 INSERT INTO Projetos (Titulo, Descricao, Data_Inicio, Data_Termino) VALUES ('Projeto 1', 'Descrição do Projeto 1', '2024-03-01', '2024-04-01');
