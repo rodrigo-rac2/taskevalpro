@@ -24,3 +24,21 @@ services:
       interval: 10s  # Check interval
       timeout: 10s  # Check timeout
       retries: 5  # Number of retries before considering unhealthy
+    networks:
+      - taskevalpro_net  # Define a rede personalizada para taskevalpro-db
+
+  taskevalpro-api:
+    build: ./api  # Build the Flask API from the ./api directory
+    container_name: taskevalpro-api
+    ports:
+      - '5100:5100'  # Map container port 5000 to host port 5000 for Flask API access
+    volumes:
+      - ./api:/app  # Mount the API directory as a volume
+    depends_on:
+      - taskevalpro-db  # Depend on taskevalpro-db service to ensure the database is ready before starting the API
+    networks:
+      - taskevalpro_net  # Define a rede personalizada para taskevalpro-api
+
+networks:
+  taskevalpro_net:  # Define a rede personalizada
+    name: taskevalpro_net  # Define o nome da rede
