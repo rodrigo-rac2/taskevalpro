@@ -46,7 +46,6 @@ POSTGRES_DB=taskevalpro
 docker-compose up --build
 ```
 
-
 4. Aguarde a inicialização dos serviços.
 
 5. Acesse a API em um navegador ou cliente HTTP:
