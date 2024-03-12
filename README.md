@@ -46,6 +46,7 @@ POSTGRES_DB=taskevalpro
 docker-compose up --build
 ```
 
+
 4. Aguarde a inicialização dos serviços.
 
 5. Acesse a API em um navegador ou cliente HTTP:
@@ -54,9 +55,31 @@ docker-compose up --build
 * **Tarefas:** http://localhost:5100/api/tarefas
 * **Avaliações:** http://localhost:5100/api/avaliacoes
 
-**Documentação da API:**
+## Usando a Coleção Postman para a API TaskEvalPro
 
-Consulte a documentação completa da API em: [https://developer.box.com/reference/resources/task/](https://developer.box.com/reference/resources/task/)
+Para facilitar o teste e a interação com a API TaskEvalPro, fornecemos uma coleção Postman que contém exemplos de solicitações para todos os endpoints disponíveis. Siga os passos abaixo para importar e usar a coleção em sua instância do Postman.
+
+### Importando a Coleção para o Postman
+
+1. Abra o Postman em seu computador.
+2. No canto superior esquerdo, clique no botão `Import`.
+3. Na janela de importação, vá até a aba `File` e clique em `Upload Files`.
+4. Navegue até o diretório do projeto TaskEvalPro, encontre e selecione o arquivo `api/doc/postman-collection.json`.
+5. Clique em `Open` para carregar o arquivo e, em seguida, em `Import` para adicionar a coleção ao seu Postman.
+
+### Utilizando a Coleção
+
+Após importar a coleção para o Postman, você verá uma lista de requests organizados por categorias, representando os diferentes endpoints da API TaskEvalPro. Cada request inclui um exemplo de corpo da solicitação (quando aplicável) e parâmetros de configuração. Siga os passos abaixo para enviar um request:
+
+1. Expanda a coleção TaskEvalPro no painel lateral do Postman para ver os requests disponíveis.
+2. Clique em um dos requests para abrir os detalhes.
+3. Verifique e, se necessário, modifique os detalhes do request, incluindo headers, corpo da solicitação e parâmetros de URL.
+4. Clique no botão `Send` para executar o request.
+5. Observe a resposta recebida na parte inferior da janela do Postman.
+
+### Dicas Importantes
+
+- **Variáveis de Ambiente:** Para facilitar o uso da coleção em diferentes ambientes (desenvolvimento, teste, produção), considere configurar [variáveis de ambiente no Postman](https://learning.postman.com/docs/sending-requests/variables/). Isso permite que você altere facilmente a URL base da API e outros parâmetros importantes sem modificar cada request individualmente.
 
 **Estrutura do Diretório do Projeto:**
 
@@ -64,6 +87,8 @@ Consulte a documentação completa da API em: [https://developer.box.com/referen
 taskevalpro/
 ├── api/
 │   ├── app.py
+│   ├── doc/
+│   │   └── postman-collection.json
 │   ├── Dockerfile
 │   ├── requirements.txt
 │   ├── routes.py
@@ -77,6 +102,7 @@ taskevalpro/
 ```
 
 * `api/`: Contém os arquivos da API Flask.
+* `api/doc/`: Coleção Postman com exemplos de requests para a API.
 * `postgres-data/`: Volume Docker para o banco de dados PostgreSQL.
 * `scripts/`: Scripts SQL para criação e preenchimento inicial do banco de dados.
 * `docker-compose.yml`: Define e inicia os serviços com Docker Compose.
@@ -88,7 +114,5 @@ Se você tiver sugestões ou encontrar algum problema, sinta-se à vontade para 
 
 **Observações:**
 
-* A documentação da API está disponível em um link externo.
-* Adapte a formatação à sua preferência e ao público-alvo do projeto.
-
-**Espero que este README.md formatado em markdown seja útil para você!**
+* A documentação da API está disponível no arquivo `api/doc/postman-collection.json`.
+* Informações da licença MIT disponíveis no arquivo `LICENSE`.
