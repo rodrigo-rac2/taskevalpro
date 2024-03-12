@@ -1,6 +1,9 @@
 from flask import Blueprint, jsonify, request, abort
 from datetime import datetime
-from models import db, Usuario, Tarefa, Avaliacao
+from database import db
+from models.usuario import Usuario
+from models.tarefa import Tarefa
+from models.avaliacao import Avaliacao
 
 routes_bp = Blueprint('routes', __name__)
 
