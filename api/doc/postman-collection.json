@@ -180,7 +180,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"titulo\": \"New Task\",\n\t\"descricao\": \"Task description here\",\n\t\"prioridade\": 1,\n\t\"prazo\": \"2024-12-31\",\n\t\"status\": false,\n\t\"id_criador\": 1,\n\t\"id_responsavel\": 1\n}"
+					"raw": "{\n\t\"titulo\": \"Ir ao médico\",\n\t\"descricao\": \"Ir ao médico\",\n\t\"prioridade\": 1,\n\t\"prazo\": \"2024-03-30\",\n\t\"status\": false,\n\t\"id_criador\": 3,\n\t\"id_responsavel\": 3\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5100/api/tarefas",
@@ -301,7 +301,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"criterios_avaliacao\": \"Criteria for evaluation\",\n\t\"pontuacao\": 5,\n\t\"comentarios\": \"Excellent work!\",\n\t\"id_tarefa_avaliada\": 1,\n\t\"id_avaliador\": 1,\n\t\"data_avaliacao\": \"2024-01-01\"\n}"
+					"raw": "{\n\t\"criterios_avaliacao\": \"Criterios \",\n\t\"pontuacao\": 10,\n\t\"comentarios\": \"Bom trabalho! Excelente\",\n\t\"id_tarefa_avaliada\": 1,\n\t\"id_avaliador\": 1,\n\t\"data_avaliacao\": \"2024-01-01\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5100/api/avaliacoes",
@@ -330,10 +330,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"criterios_avaliacao\": \"Updated criteria\",\n\t\"pontuacao\": 4,\n\t\"comentarios\": \"Very good, but there is room for improvement\",\n\t\"data_avaliacao\": \"2024-02-01\"\n}"
+					"raw": "{\n\t\"criterios_avaliacao\": \"Criterios 3\",\n\t\"pontuacao\": 7.5,\n\t\"comentarios\": \"Foi bom, mas há algumas possibilidades de melhoria\",\n\t\"data_avaliacao\": \"2024-02-01\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5100/api/avaliacoes/1",
+					"raw": "http://localhost:5100/api/avaliacoes/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -342,7 +342,7 @@
 					"path": [
 						"api",
 						"avaliacoes",
-						"1"
+						"3"
 					]
 				}
 			},
