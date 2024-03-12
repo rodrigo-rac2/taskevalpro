@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, abort
 from datetime import datetime
 from models import db, Usuario, Tarefa, Avaliacao
 
@@ -10,11 +10,25 @@ def get_usuarios():
     output = [{'id': usuario.id, 'nome_usuario': usuario.nome_usuario, 'email': usuario.email, 'papel': usuario.papel} for usuario in usuarios]
     return jsonify({'usuarios': output})
 
+@routes_bp.route('/usuario/<int:id>', methods=['GET'])
+def get_usuario_by_id(id):
+    usuario = Usuario.query.get(id)
+    if usuario is None:
+        abort(404, description="Usuário não encontrado")
+    
+    return jsonify({
+        'id': usuario.id,
+        'nome_usuario': usuario.nome_usuario,
+        'email': usuario.email,
+        'papel': usuario.papel
+    })
+
 @routes_bp.route('/usuarios', methods=['POST'])
 def create_usuario():
     data = request.json
     nome_usuario = data.get('nome_usuario')
     email = data.get('email')
+    senha = data.get('senha')
     papel = data.get('papel')
 
     if not nome_usuario or not email or not papel:
@@ -25,7 +39,7 @@ def create_usuario():
         return jsonify({'message': 'O email já está em uso'}), 409
 
     # Criar o usuário
-    usuario = Usuario(nome_usuario=nome_usuario, email=email, papel=papel)
+    usuario = Usuario(nome_usuario=nome_usuario, email=email, papel=papel, senha=senha)
     db.session.add(usuario)
     db.session.commit()
 
@@ -36,6 +50,7 @@ def update_usuario(id):
     data = request.json
     nome_usuario = data.get('nome_usuario')
     email = data.get('email')
+    senha = data.get('senha')
     papel = data.get('papel')
 
     usuario = Usuario.query.get(id)
@@ -49,6 +64,8 @@ def update_usuario(id):
         usuario.email = email
     if papel:
         usuario.papel = papel
+    if senha:
+        usuario.senha = senha
 
     db.session.commit()
 
@@ -72,11 +89,23 @@ def get_tarefas():
     output = [{'id': tarefa.id, 'titulo': tarefa.titulo, 'descricao': tarefa.descricao, 'prioridade': tarefa.prioridade, 'prazo': str(tarefa.prazo), 'status': tarefa.status, 'id_criador': tarefa.id_criador, 'id_responsavel': tarefa.id_responsavel} for tarefa in tarefas]
     return jsonify({'tarefas': output})
 
-@routes_bp.route('/avaliacoes', methods=['GET'])
-def get_avaliacoes():
-    avaliacoes = Avaliacao.query.all()
-    output = [{'id': avaliacao.id, 'criterios_avaliacao': avaliacao.criterios_avaliacao, 'pontuacao': avaliacao.pontuacao, 'comentarios': avaliacao.comentarios, 'id_tarefa_avaliada': avaliacao.id_tarefa_avaliada, 'id_avaliador': avaliacao.id_avaliador, 'data_avaliacao': str(avaliacao.data_avaliacao)} for avaliacao in avaliacoes]
-    return jsonify({'avaliacoes': output})
+# Get a specific task by ID using a new endpoint /tarefa/<id>
+@routes_bp.route('/tarefa/<int:id>', methods=['GET'])
+def get_tarefa_by_id(id):
+    tarefa = Tarefa.query.get(id)
+    if tarefa is None:
+        abort(404, description="Tarefa não encontrada")
+    
+    return jsonify({
+        'id': tarefa.id,
+        'titulo': tarefa.titulo,
+        'descricao': tarefa.descricao,
+        'prioridade': tarefa.prioridade,
+        'prazo': str(tarefa.prazo),
+        'status': tarefa.status,
+        'id_criador': tarefa.id_criador,
+        'id_responsavel': tarefa.id_responsavel
+    })
 
 @routes_bp.route('/tarefas', methods=['POST'])
 def create_tarefa():
@@ -160,6 +189,30 @@ def delete_tarefa(id):
 
 
 ### avaliacoes
+
+@routes_bp.route('/avaliacoes', methods=['GET'])
+def get_avaliacoes():
+    avaliacoes = Avaliacao.query.all()
+    output = [{'id': avaliacao.id, 'criterios_avaliacao': avaliacao.criterios_avaliacao, 'pontuacao': avaliacao.pontuacao, 'comentarios': avaliacao.comentarios, 'id_tarefa_avaliada': avaliacao.id_tarefa_avaliada, 'id_avaliador': avaliacao.id_avaliador, 'data_avaliacao': str(avaliacao.data_avaliacao)} for avaliacao in avaliacoes]
+    return jsonify({'avaliacoes': output})
+
+# Get a specific evaluation by ID using a new endpoint /avaliacao/<id>
+@routes_bp.route('/avaliacao/<int:id>', methods=['GET'])
+def get_avaliacao_by_id(id):
+    avaliacao = Avaliacao.query.get(id)
+    if avaliacao is None:
+        abort(404, description="Avaliação não encontrada")
+    
+    return jsonify({
+        'id': avaliacao.id,
+        'criterios_avaliacao': avaliacao.criterios_avaliacao,
+        'pontuacao': avaliacao.pontuacao,
+        'comentarios': avaliacao.comentarios,
+        'id_tarefa_avaliada': avaliacao.id_tarefa_avaliada,
+        'id_avaliador': avaliacao.id_avaliador,
+        'data_avaliacao': str(avaliacao.data_avaliacao)
+    })
+
 @routes_bp.route('/avaliacoes', methods=['POST'])
 def create_avaliacao():
     data = request.json
