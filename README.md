@@ -14,8 +14,11 @@
 * **API RESTful:**
     * A API fornece endpoints para todos os recursos da aplicação.
     * Facilitando a integração com outros sistemas.
+* **Front-end em React:**
+    * Interface amigável e responsiva para uma melhor experiência do usuário.
 
-**Instalação:**
+
+**Instalação e Execução:**
 
 **Pré-requisitos:**
 
@@ -48,7 +51,9 @@ docker-compose up --build
 
 4. Aguarde a inicialização dos serviços.
 
-5. Acesse a API em um navegador ou cliente HTTP:
+5. Acesse a aplicação web em um navegador: http://localhost:5000
+
+6. Se desejar, acesse a API em um navegador ou cliente HTTP:
 
 * **Usuários:** http://localhost:5100/api/usuarios
 * **Tarefas:** http://localhost:5100/api/tarefas
@@ -91,7 +96,23 @@ taskevalpro/
 │   ├── Dockerfile
 │   ├── requirements.txt
 │   ├── routes.py
-│   └── models.py
+│   └── models/
+│       ├── avaliacao.py
+│       ├── tarefa.py
+│       └── usuario.py
+├── web/
+│   ├── Dockerfile
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── src/
+│   │   ├── assets/
+│   │   │   └── react.svg
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   └── public/
 ├── postgres-data/
 ├── scripts/
 │   ├── ddl.taskevalpro.sql
@@ -102,6 +123,9 @@ taskevalpro/
 
 * `api/`: Contém os arquivos da API Flask.
 * `api/doc/`: Coleção Postman com exemplos de requests para a API.
+* `web/`: Contém os arquivos do front-end em React.
+* `web/public/`: Arquivos estáticos e públicos do front-end, como o favicon e o logo, que podem ser acessados diretamente.
+* `web/src/`: Código-fonte JavaScript/JSX do front-end.
 * `postgres-data/`: Volume Docker para o banco de dados PostgreSQL.
 * `scripts/`: Scripts SQL para criação e preenchimento inicial do banco de dados.
 * `docker-compose.yml`: Define e inicia os serviços com Docker Compose.
