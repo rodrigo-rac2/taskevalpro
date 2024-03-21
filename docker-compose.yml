@@ -38,6 +38,18 @@ services:
       - taskevalpro-db  # Depend on taskevalpro-db service to ensure the database is ready before starting the API
     networks:
       - taskevalpro_net  # Define a rede personalizada para taskevalpro-api
+  
+  taskevalpro-web:
+    build: ./web  # Build the React app from the ./web directory
+    container_name: taskevalpro-web
+    ports:
+      - '3000:3000'  # Map container port 3000 to host port 3000 for React app access
+    volumes:
+      - ./web:/app  # Mount the web directory as a volume
+    depends_on:
+      - taskevalpro-api  # Depend on taskevalpro-api service to ensure the API is ready before starting the web app
+    networks:
+      - taskevalpro_net  # Define a rede personalizada para taskevalpro-web
 
 networks:
   taskevalpro_net:  # Define a rede personalizada
