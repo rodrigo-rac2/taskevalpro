@@ -15,6 +15,9 @@ function App() {
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
+        <a href="https://github.com/rodrigo-rac2" target="_blank">
+          <img src="https://avatars.githubusercontent.com/u/60664391?v=4" className="avatar" alt="Rodrigo" />
+        </a>
       </div>
       <h1>Vite + React + Rodrigo</h1>
       <div className="card">
@@ -26,7 +29,7 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        Click on the Vite, React and Rodrigo logos to learn more
       </p>
     </>
   )
